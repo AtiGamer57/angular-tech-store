@@ -1,0 +1,24 @@
+@use '../../../variables.scss' as v;
+
+.navbar {
+    background-color: v.$navbar-background;
+    overflow: hidden;
+    text-align: center;
+
+    a {
+        display: inline-block;
+        color: v.$navbar-text;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+        border-radius: 0.25rem;
+
+        &.active {
+            background-color: v.$navbar-selected;
+        }
+
+        &:hover {
+            background-color: v.$navbar-hover;
+        }
+      }
+  }
