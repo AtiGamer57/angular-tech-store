@@ -1,7 +1,7 @@
 <div class="navbar">
-    <a href="#" class="active">Home</a>
-    <a href="#">About</a>
-    <a href="#">Services</a>
-    <a href="#">Contact</a>
-    <a href="#">Login</a>
+    <button (click)="selectPage('home')" [ngClass]="currentPage === 'home' ? 'active' : 'inactive'">Home</button>
+    <button (click)="selectPage('about')" [ngClass]="currentPage === 'about' ? 'active' : 'inactive'">About</button>
+    <button (click)="selectPage('services')" [ngClass]="currentPage === 'services' ? 'active' : 'inactive'">Services</button>
+    <button (click)="selectPage('contact')" [ngClass]="currentPage === 'contact' ? 'active' : 'inactive'">Contact</button>
+    <button (click)="selectPage('login')" [ngClass]="currentPage === 'login' ? 'active' : 'inactive'">Login</button>
 </div>

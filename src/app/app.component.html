@@ -1,3 +1,8 @@
-<app-navbar></app-navbar>
+<app-banner></app-banner>
+<app-navbar (selectedPage)="selectPage($event)"></app-navbar>
 
-<router-outlet />
+<div>Selected page: {{selectedPage}}</div>
+
+<router-outlet></router-outlet>
+
+<app-footer></app-footer>

@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'tect-store';
+  selectedPage = '';
+
+  selectPage($selectedPage: string) {
+    this.selectedPage = $selectedPage;
+  }
 }

@@ -5,20 +5,25 @@
     overflow: hidden;
     text-align: center;
 
-    a {
+    button {
         display: inline-block;
         color: v.$navbar-text;
         text-align: center;
         padding: 14px 20px;
         text-decoration: none;
         border-radius: 0.25rem;
-
-        &.active {
-            background-color: v.$navbar-selected;
-        }
+        border: none;
 
         &:hover {
             background-color: v.$navbar-hover;
         }
       }
   }
+
+.active {
+    background-color: v.$navbar-selected;
+}
+
+.inactive{
+    background-color: v.$navbar-background;
+}
