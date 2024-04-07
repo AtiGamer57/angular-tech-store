@@ -1,8 +1,7 @@
 <app-banner></app-banner>
-<app-navbar (selectedPage)="selectPage($event)"></app-navbar>
+<app-navbar [selectedPage]="this.router.url"/>
+<div>Selected page: {{this.router.url}}</div>
 
-<div>Selected page: {{selectedPage}}</div>
+<router-outlet/>
 
-<router-outlet></router-outlet>
-
-<app-footer></app-footer>
+<app-footer/>

@@ -1,7 +1,16 @@
 <div class="navbar">
-    <button (click)="selectPage('home')" [ngClass]="currentPage === 'home' ? 'active' : 'inactive'">Home</button>
-    <button (click)="selectPage('about')" [ngClass]="currentPage === 'about' ? 'active' : 'inactive'">About</button>
-    <button (click)="selectPage('services')" [ngClass]="currentPage === 'services' ? 'active' : 'inactive'">Services</button>
-    <button (click)="selectPage('contact')" [ngClass]="currentPage === 'contact' ? 'active' : 'inactive'">Contact</button>
-    <button (click)="selectPage('login')" [ngClass]="currentPage === 'login' ? 'active' : 'inactive'">Login</button>
+    <a href="/home" [ngClass]="selectedPage === '/home' ? 'active' : 'inactive'">Home</a>
+    <a href="/about" [ngClass]="selectedPage === '/about' ? 'active' : 'inactive'">About</a>
+    <a href="/services" [ngClass]="selectedPage === '/services' ? 'active' : 'inactive'">Services</a>
+    <a href="/contact" [ngClass]="selectedPage === '/contact' ? 'active' : 'inactive'">Contact</a>
+    <a href="/login" [ngClass]="selectedPage === '/login' ? 'active' : 'inactive'">Login</a>
+    <div class="dropdown">
+        <button class="dropbtn">Dropdown
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        </div>
+      </div>
 </div>
