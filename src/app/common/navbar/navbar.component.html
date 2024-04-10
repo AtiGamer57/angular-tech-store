@@ -5,12 +5,10 @@
     <a href="/contact" [ngClass]="selectedPage === '/contact' ? 'active' : 'inactive'">Contact</a>
     <a href="/login" [ngClass]="selectedPage === '/login' ? 'active' : 'inactive'">Login</a>
     <div class="dropdown">
-        <button class="dropbtn">Dropdown
-          <i class="fa fa-caret-down"></i>
-        </button>
+        <button class="dropbtn"></button>
         <div class="dropdown-content">
-            <a href="/login">Login</a>
-            <a href="/register">Register</a>
+            <a [ngClass]="selectedPage === '/login' ? 'active' : 'inactive'" href="/login">Login</a>
+            <a [ngClass]="selectedPage === '/register' ? 'active' : 'inactive'" href="/register">Register</a>
         </div>
       </div>
 </div>
