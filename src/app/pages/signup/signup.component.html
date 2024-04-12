@@ -1,0 +1,35 @@
+<div class="container">
+    <h2>Registration</h2>
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" required formControlName="username">
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" required formControlName="email">
+        </div>
+        <div formGroupName="name">
+            <div>
+                <label for="firstName">First Name:</label>
+                <input type="text" required formControlName="firstName">
+            </div>
+            <div>
+                <label for="lastName">Second Name:</label>
+                <input type="text" required formControlName="lastName">
+            </div>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" required formControlName="password">
+        </div>
+        <div>
+            <label for="passwordRepeat">Confirm Password:</label>
+            <input type="password" required formControlName="passwordRepeat">
+        </div>
+        <div>
+            <button type="submit">Register</button>
+            <button (click)="goBack()">Cancel</button>
+        </div>
+    </form>
+</div>
