@@ -3,29 +3,29 @@
     <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
         <div>
             <label for="username">Username:</label>
-            <input type="text" required formControlName="username">
+            <input type="text" id="username" required formControlName="username">
         </div>
         <div>
             <label for="email">Email:</label>
-            <input type="email" required formControlName="email">
+            <input type="email" id="email" required formControlName="email">
         </div>
         <div formGroupName="name">
             <div>
                 <label for="firstName">First Name:</label>
-                <input type="text" required formControlName="firstName">
+                <input type="text" id="firstName" required formControlName="firstName">
             </div>
             <div>
                 <label for="lastName">Second Name:</label>
-                <input type="text" required formControlName="lastName">
+                <input type="text" id="lastName" required formControlName="lastName">
             </div>
         </div>
         <div>
             <label for="password">Password:</label>
-            <input type="password" required formControlName="password">
+            <input type="password" id="password" required formControlName="password">
         </div>
         <div>
             <label for="passwordRepeat">Confirm Password:</label>
-            <input type="password" required formControlName="passwordRepeat">
+            <input type="password" id="passwordRepeat" required formControlName="passwordRepeat">
         </div>
         <div>
             <button type="submit">Register</button>
