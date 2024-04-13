@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatMenu } from '@angular/material/menu';
 import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
@@ -8,9 +9,17 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class NavbarComponent {
   @Input() selectedPage: String = '';
+  isMenuOpen = false;
 
   toggleSidebar(sidenav: MatSidenav) {
     sidenav.toggle();
   }
+
+  openDropdown(menu: MatMenu) {
+  }
+
+  closeDropdown(menu: MatMenu) {
+  }
+
 
 }

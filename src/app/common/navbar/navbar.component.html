@@ -55,9 +55,12 @@
                 <a href="/about" [ngClass]="selectedPage === '/about' ? 'active' : 'inactive'">About</a>
                 <a href="/services" [ngClass]="selectedPage === '/services' ? 'active' : 'inactive'">Services</a>
                 <a href="/contact" [ngClass]="selectedPage === '/contact' ? 'active' : 'inactive'">Contact</a>
-                <a href="/login" [ngClass]="selectedPage === '/login' ? 'active' : 'inactive'">Login</a>
-                <div class="dropdown">
-                    <button class="dropbtn"><mat-icon>account_circle</mat-icon></button>
+                <div class="dropdown" (mouseenter)="menuTrigger.openMenu()">
+                    <button mat-button #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="dropdownMenu"><mat-icon>account_circle</mat-icon></button>
+                    <mat-menu #dropdownMenu>
+                        <a mat-menu-item href="/login" [ngClass]="selectedPage === '/login' ? 'active' : 'inactive'">Login</a>
+                        <a mat-menu-item href="/signup" [ngClass]="selectedPage === '/signup' ? 'active' : 'inactive'">SignUp</a>
+                    </mat-menu>
                 </div>
             </div>
         </mat-toolbar>
