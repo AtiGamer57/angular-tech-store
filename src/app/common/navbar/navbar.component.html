@@ -1,3 +1,4 @@
+<!--
 <div class="navbar">
     <a href="/home" [ngClass]="selectedPage === '/home' ? 'active' : 'inactive'">Home</a>
     <a href="/about" [ngClass]="selectedPage === '/about' ? 'active' : 'inactive'">About</a>
@@ -12,3 +13,54 @@
         </div>
       </div>
 </div>
+-->
+<mat-sidenav-container class="container">
+    <mat-sidenav #sidenav class="sidenav">
+        <mat-nav-list>
+            <a mat-list-item href="/home" [ngClass]="selectedPage === '/home' ? 'active' : 'inactive'">
+                <mat-icon>info</mat-icon>
+                <span>Home</span>
+            </a>
+            <a mat-list-item href="/about" [ngClass]="selectedPage === '/about' ? 'active' : 'inactive'">
+                <mat-icon>info</mat-icon>
+                <span>About</span>
+            </a>
+            <a mat-list-item href="/services" [ngClass]="selectedPage === '/services' ? 'active' : 'inactive'">
+                <mat-icon>info</mat-icon>
+                <span>Services</span>
+            </a>
+            <a mat-list-item href="/contact" [ngClass]="selectedPage === '/contact' ? 'active' : 'inactive'">
+                <mat-icon>info</mat-icon>
+                <span>Contact</span>
+            </a>
+            <a mat-list-item href="/login" [ngClass]="selectedPage === '/login' ? 'active' : 'inactive'">
+                <mat-icon>info</mat-icon>
+                <span>Login</span>
+            </a>
+            <a mat-list-item href="/signup" [ngClass]="selectedPage === '/signup' ? 'active' : 'inactive'">
+                <mat-icon>info</mat-icon>
+                <span>SignUp</span>
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <div fxHide.gt-sm>
+                <button mat-icon-button (click)="toggleSidebar(sidenav)">
+                    <mat-icon>menu</mat-icon>
+                </button>
+            </div>
+            <div class="navbar" fxFlex fxLayout fxLayoutAlign="center" fxHide.lt-sm fxHide.sm>
+                <a href="/home" [ngClass]="selectedPage === '/home' ? 'active' : 'inactive'">Home</a>
+                <a href="/about" [ngClass]="selectedPage === '/about' ? 'active' : 'inactive'">About</a>
+                <a href="/services" [ngClass]="selectedPage === '/services' ? 'active' : 'inactive'">Services</a>
+                <a href="/contact" [ngClass]="selectedPage === '/contact' ? 'active' : 'inactive'">Contact</a>
+                <a href="/login" [ngClass]="selectedPage === '/login' ? 'active' : 'inactive'">Login</a>
+                <div class="dropdown">
+                    <button class="dropbtn"><mat-icon>account_circle</mat-icon></button>
+                </div>
+            </div>
+        </mat-toolbar>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
