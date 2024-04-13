@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './common/navbar/navbar.component';
 import { BannerComponent } from './common/banner/banner.component';
 import { FooterComponent } from './common/footer/footer.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FooterComponent } from './common/footer/footer.component';
   ],
   providers: [
     provideClientHydration(),
+    provideAnimationsAsync(),
   ],
   bootstrap: [AppComponent]
 })
