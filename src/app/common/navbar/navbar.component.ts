@@ -14,12 +14,4 @@ export class NavbarComponent {
   toggleSidebar(sidenav: MatSidenav) {
     sidenav.toggle();
   }
-
-  openDropdown(menu: MatMenu) {
-  }
-
-  closeDropdown(menu: MatMenu) {
-  }
-
-
 }

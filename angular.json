@@ -108,6 +108,23 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "tect-store:build:production",
+              "serveTarget": "tect-store:serve:production"
+            },
+            "development": {
+              "buildTarget": "tect-store:build:development",
+              "serveTarget": "tect-store:serve:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }

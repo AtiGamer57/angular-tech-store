@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "webfejl-tech-shop": {
+      "hosting": {
+        "tect-store": [
+          "webfejl-tech-shop"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "webfejl-tech-shop"
+  }
+}
