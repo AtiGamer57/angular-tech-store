@@ -23,6 +23,8 @@
         text-decoration: none;
         border-radius: 0.25rem;
         border: none;
+        height: 100%;
+        margin: 0;
 
         &:hover {
             background-color: v.$navbar-hover;
@@ -40,7 +42,6 @@
 
 .dropbtn {
   background-color: inherit;
-  height: 100%;
   border: none;
   outline: none;
   margin: 0;
@@ -50,4 +51,14 @@
 
 #content {
   height: 100vh;
+}
+
+button {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+
+  mat-icon {
+  
+  }
 }

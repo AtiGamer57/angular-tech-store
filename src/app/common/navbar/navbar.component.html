@@ -1,19 +1,3 @@
-<!--
-<div class="navbar">
-    <a href="/home" [ngClass]="selectedPage === '/home' ? 'active' : 'inactive'">Home</a>
-    <a href="/about" [ngClass]="selectedPage === '/about' ? 'active' : 'inactive'">About</a>
-    <a href="/services" [ngClass]="selectedPage === '/services' ? 'active' : 'inactive'">Services</a>
-    <a href="/contact" [ngClass]="selectedPage === '/contact' ? 'active' : 'inactive'">Contact</a>
-    <a href="/login" [ngClass]="selectedPage === '/login' ? 'active' : 'inactive'">Login</a>
-    <div class="dropdown">
-        <button class="dropbtn"></button>
-        <div class="dropdown-content">
-            <a [ngClass]="selectedPage === '/login' ? 'active' : 'inactive'" href="/login">Login</a>
-            <a [ngClass]="selectedPage === '/signup' ? 'active' : 'inactive'" href="/signup">Register</a>
-        </div>
-      </div>
-</div>
--->
 <mat-sidenav-container class="container" id="content">
     <mat-sidenav #sidenav class="sidenav">
         <mat-nav-list>
@@ -29,18 +13,24 @@
                 <mat-icon>info</mat-icon>
                 <span>Services</span>
             </a>
-            <a mat-list-item href="/contact" [ngClass]="selectedPage === '/contact' ? 'active' : 'inactive'">
+            <a mat-list-item href="/products" [ngClass]="selectedPage === '/products' ? 'active' : 'inactive'">
                 <mat-icon>info</mat-icon>
-                <span>Contact</span>
+                <span>Products</span>
             </a>
-            <a mat-list-item href="/login" [ngClass]="selectedPage === '/login' ? 'active' : 'inactive'">
-                <mat-icon>info</mat-icon>
-                <span>Login</span>
-            </a>
-            <a mat-list-item href="/signup" [ngClass]="selectedPage === '/signup' ? 'active' : 'inactive'">
-                <mat-icon>info</mat-icon>
-                <span>SignUp</span>
-            </a>
+            <ng-template *ngIf="isLoggedIn; then thenBlock2 else elseBlock2"></ng-template>
+            <ng-template #elseBlock2>
+                <a mat-list-item href="/login" [ngClass]="selectedPage === '/login' ? 'active' : 'inactive'">
+                    <mat-icon>info</mat-icon>
+                    <span>Login</span>
+                </a>
+                <a mat-list-item href="/signup" [ngClass]="selectedPage === '/signup' ? 'active' : 'inactive'">
+                    <mat-icon>info</mat-icon>
+                    <span>SignUp</span>
+                </a>
+            </ng-template>
+            <ng-template #thenBlock2>
+                <button mat-button (click)="logout()">Logout</button>
+            </ng-template>
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -54,14 +44,22 @@
                 <a href="/home" [ngClass]="selectedPage === '/home' ? 'active' : 'inactive'">Home</a>
                 <a href="/about" [ngClass]="selectedPage === '/about' ? 'active' : 'inactive'">About</a>
                 <a href="/services" [ngClass]="selectedPage === '/services' ? 'active' : 'inactive'">Services</a>
-                <a href="/contact" [ngClass]="selectedPage === '/contact' ? 'active' : 'inactive'">Contact</a>
-                <div class="dropdown" (mouseenter)="menuTrigger.openMenu()">
-                    <button mat-button #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="dropdownMenu"><mat-icon>account_circle</mat-icon></button>
+                <a href="/products" [ngClass]="selectedPage === '/products' ? 'active' : 'inactive'">Products</a>
+                <ng-template *ngIf="isLoggedIn; then thenBlock else elseBlock"></ng-template>
+                <ng-template #elseBlock class="dropdown" (mouseenter)="menuTrigger.openMenu()">
+                    <button mat-button #menuTrigger="matMenuTrigger"
+                        [matMenuTriggerFor]="dropdownMenu"><mat-icon class="button-icon">account_circle</mat-icon>asd</button>
                     <mat-menu #dropdownMenu>
-                        <a mat-menu-item href="/login" [ngClass]="selectedPage === '/login' ? 'active' : 'inactive'">Login</a>
-                        <a mat-menu-item href="/signup" [ngClass]="selectedPage === '/signup' ? 'active' : 'inactive'">SignUp</a>
+                        <a mat-menu-item href="/login"
+                            [ngClass]="selectedPage === '/login' ? 'active' : 'inactive'">Login</a>
+                        <a mat-menu-item href="/signup"
+                            [ngClass]="selectedPage === '/signup' ? 'active' : 'inactive'">SignUp</a>
                     </mat-menu>
-                </div>
+                </ng-template>
+                <ng-template #thenBlock>
+                    <button mat-button (click)="logout()">Logout</button>
+                </ng-template>
+                <button mat-button><mat-icon>account_circle</mat-icon></button>
             </div>
         </mat-toolbar>
         <router-outlet></router-outlet>

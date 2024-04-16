@@ -5,6 +5,9 @@ import { AuthService } from '../../common/services/auth.service';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
 import { UserService } from '../../common/services/user.service';
+import { Cart } from '../../models/cart';
+import { CartItem } from '../../models/cartItem';
+import { CartService } from '../../common/services/cart.service';
 
 @Component({
   selector: 'app-signup',
@@ -24,7 +27,7 @@ export class SignupComponent implements OnInit{
     }),
   });
 
-  constructor(private location: Location, private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private userService: UserService) {}
+  constructor(private location: Location, private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private userService: UserService, private cartService: CartService) {}
 
   ngOnInit(): void {
   }
@@ -44,6 +47,15 @@ export class SignupComponent implements OnInit{
             }
           };
           this.userService.createUser(user).then(_ => {
+          }).catch(error => {
+            console.log(error); 
+          });
+
+          const cart: Cart = {
+            uid: cred.user?.uid as string,
+            items: []
+          }
+          this.cartService.createCart(cart).then(_ => {
             this.router.navigateByUrl('/home');
           }).catch(error => {
             console.log(error); 

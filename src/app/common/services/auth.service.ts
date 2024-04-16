@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';  
-import { AngularFireAuth} from '@angular/fire/compat/auth';
+import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ export class AuthService {
 
   constructor(private auth: AngularFireAuth) { }
 
-  login(email: string, password: string){
+  login(email: string, password: string) {
     return this.auth.signInWithEmailAndPassword(email, password);
   }
 
@@ -17,10 +17,11 @@ export class AuthService {
   }
 
   logout() {
+    localStorage.clear();
     return this.auth.signOut();
   }
 
-  setCurrentUser(){
+  setCurrentUser() {
     this.auth.user.subscribe(user => {
       localStorage.setItem('user', JSON.stringify(user));
     }, error => {
