@@ -1,0 +1,17 @@
+.main {
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.image {
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 100%;
+
+    img{
+        max-width: 95%;
+    }
+}

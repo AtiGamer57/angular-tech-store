@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
+import { AuthService } from '../../common/services/auth.service';
+import { Router } from '@angular/router';
+import { User } from '../../models/user';
+import { UserService } from '../../common/services/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -20,14 +24,34 @@ export class SignupComponent implements OnInit{
     }),
   });
 
-  constructor(private location: Location, private formBuilder: FormBuilder) {}
+  constructor(private location: Location, private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
   }
 
   onSubmit(){
     if (this.signUpForm.valid) {
-      console.log('valid form');
+      if (this.signUpForm.value.email && this.signUpForm.value.password){
+        this.authService.signUp(this.signUpForm.value.email, this.signUpForm.value.password).then(cred => {
+          this.authService.setCurrentUser();
+          const user: User = {
+            id: cred.user?.uid as string,
+            email: this.signUpForm.value.email as string,
+            username: this.signUpForm.value.username as string,
+            name: {
+              firstName: this.signUpForm.value.name?.firstName as string,
+              lastName: this.signUpForm.value.name?.lastName as string,
+            }
+          };
+          this.userService.createUser(user).then(_ => {
+            this.router.navigateByUrl('/home');
+          }).catch(error => {
+            console.log(error); 
+          });
+        }).catch(error => {
+          console.error(error);
+        });
+      }
     } else {
       console.log('invalid form :(');
     }

@@ -10,8 +10,13 @@ import { MatSidenav } from '@angular/material/sidenav';
 export class NavbarComponent {
   @Input() selectedPage: String = '';
   isMenuOpen = false;
+  isLoggedIn=false;
 
   toggleSidebar(sidenav: MatSidenav) {
     sidenav.toggle();
+  }
+
+  constructor() {
+    
   }
 }

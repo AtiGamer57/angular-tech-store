@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../common/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,20 +17,21 @@ export class LoginComponent {
     password: new FormControl('', [Validators.required]),
   });
 
-  constructor (private formBuilder: FormBuilder, private authService: AuthService) {
+  constructor (private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
 
   }
 
   login() {
-    console.log(this.loginForm.value);
-    console.log(this.loginForm.value.email);
-    console.log(this.loginForm.value.password);
     if (this.loginForm.value.email && this.loginForm.value.password) {
       this.authService.login(this.loginForm.value.email, this.loginForm.value.password).then(cred => {
-        console.log(cred);
+        this.authService.setCurrentUser();
+        this.router.navigateByUrl('/home');
       }).catch(error => {
         console.error(error);
       });
     }
   }
+
+
+
 }

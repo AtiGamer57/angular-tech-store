@@ -11,4 +11,21 @@ export class AuthService {
   login(email: string, password: string){
     return this.auth.signInWithEmailAndPassword(email, password);
   }
+
+  signUp(email: string, password: string) {
+    return this.auth.createUserWithEmailAndPassword(email, password);
+  }
+
+  logout() {
+    return this.auth.signOut();
+  }
+
+  setCurrentUser(){
+    this.auth.user.subscribe(user => {
+      localStorage.setItem('user', JSON.stringify(user));
+    }, error => {
+      console.log(error);
+      localStorage.setItem('user', JSON.stringify('null'));
+    });
+  }
 }
