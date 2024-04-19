@@ -1,0 +1,33 @@
+  mat-card{
+    width: 90%;
+    margin: 2vh auto;
+  }
+
+  mat-card-content {
+    display: flex;
+  }
+  
+  img {
+    max-width: 100%;
+  }
+
+  .imgContainer {
+    width: 20vh;
+    padding: 1rem;
+  }
+
+  .card-container {
+    justify-content: center;
+  }
+
+  .buttonContainer {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    button{
+      margin: auto;
+    }
+  }
+    
+  

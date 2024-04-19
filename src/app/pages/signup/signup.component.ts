@@ -56,7 +56,9 @@ export class SignupComponent implements OnInit{
             items: []
           }
           this.cartService.createCart(cart).then(_ => {
-            this.router.navigateByUrl('/home');
+            this.router.navigateByUrl('/home').then(_ => {
+              window.location.reload();
+            });
           }).catch(error => {
             console.log(error); 
           });

@@ -1,41 +1,35 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { MatMenu } from '@angular/material/menu';
 import { MatSidenav } from '@angular/material/sidenav';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
-export class NavbarComponent implements OnChanges, OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
   @Input() selectedPage: String = '';
-  isMenuOpen = false;
   isLoggedIn = false;
+  loggedInSubscription?: Subscription;
 
   toggleSidebar(sidenav: MatSidenav) {
     sidenav.toggle();
   }
 
   constructor(private authService: AuthService, private router: Router) {
-
   }
 
   ngOnInit(): void {
-    this.checkIfLoggedIn();
+    this.loggedInSubscription = this.authService.isLoggedIn().subscribe((data: boolean) => {
+      this.isLoggedIn = data;
+    })
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.checkIfLoggedIn();
-  }
-
-  checkIfLoggedIn() {
-    if (localStorage.getItem('user')) {
-      this.isLoggedIn = true;
-    } else {
-      this.isLoggedIn = false;
-    }
+  ngOnDestroy(): void {
+    this.loggedInSubscription?.unsubscribe();
   }
 
 

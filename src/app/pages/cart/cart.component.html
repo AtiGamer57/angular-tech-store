@@ -1,0 +1,20 @@
+<div class="card-container">
+    <mat-card *ngFor="let item of itemsInCart; let i = index" [ngStyle]="{'background-color': i % 2 === 1 ? '#c6ebff' : '#abe2ff'}">
+        <mat-card-header>
+            <mat-card-title>{{ item.product?.name }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="container">
+            <div class="imgContainer">
+                <img src={{item.product?.imgUrl}}>
+            </div>
+            <div>
+                <p>{{ item.product?.description }}</p>
+                <p>items in cart: {{ item.count }}</p>
+                <p>{{ (item.count * (item.product?.price || 1)) | price }} ({{item.product?.price | price}}/pcs)</p>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    <div class="buttonContainer">
+        <button mat-raised-button (click)="buyEverything()">Buy<mat-icon>shopping_cart</mat-icon></button>
+    </div>
+</div>

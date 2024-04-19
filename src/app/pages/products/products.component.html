@@ -3,11 +3,17 @@
       <mat-card-header>
         <mat-card-title>{{ product.name }}</mat-card-title>
       </mat-card-header>
-      <mat-card-content>
-        <img src={{product.imgUrl}}>
-        <p>{{ product.description }}</p>
-        <p>{{ product.price }}</p>
-        <button mat-raised-button color="primary" (click)="addItemToCard(product.id)">Add To Cart<mat-icon>add_shopping_cart</mat-icon></button>
+      <mat-card-content class="container">
+        <div >
+          <div class="imgContainer">
+            <img src={{product.imgUrl}}>
+          </div>
+          <p>{{ product.description }}</p>
+        </div>
+        <div>
+          <p>{{ product.price | price }}</p>
+          <button mat-raised-button color="primary" (click)="addItemToCart(product.id)">Add To Cart<mat-icon>add_shopping_cart</mat-icon></button>
+        </div>
       </mat-card-content>
     </mat-card>
   </div>

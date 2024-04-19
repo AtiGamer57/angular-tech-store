@@ -1,12 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
+import { User } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
+import { Observable, Subscriber } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private auth: AngularFireAuth) { }
+  constructor(private auth: AngularFireAuth, private router: Router) {
+   }
 
   login(email: string, password: string) {
     return this.auth.signInWithEmailAndPassword(email, password);
@@ -29,4 +33,20 @@ export class AuthService {
       localStorage.setItem('user', JSON.stringify('null'));
     });
   }
+
+  isLoggedIn(): Observable<boolean> {
+    return new Observable((subscriber : Subscriber<boolean>) => {
+      if (typeof localStorage !== 'undefined' && localStorage.getItem('user')){
+        subscriber.next(true);
+      } else {
+        subscriber.next(false);
+      }
+    })
+  }
+
+  getCurrentUser() {
+    return this.auth.authState;
+  }
+
+
 }

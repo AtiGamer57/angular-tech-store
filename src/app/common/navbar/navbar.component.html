@@ -2,34 +2,33 @@
     <mat-sidenav #sidenav class="sidenav">
         <mat-nav-list>
             <a mat-list-item href="/home" [ngClass]="selectedPage === '/home' ? 'active' : 'inactive'">
-                <mat-icon>info</mat-icon>
                 <span>Home</span>
             </a>
             <a mat-list-item href="/about" [ngClass]="selectedPage === '/about' ? 'active' : 'inactive'">
-                <mat-icon>info</mat-icon>
                 <span>About</span>
             </a>
-            <a mat-list-item href="/services" [ngClass]="selectedPage === '/services' ? 'active' : 'inactive'">
-                <mat-icon>info</mat-icon>
-                <span>Services</span>
-            </a>
             <a mat-list-item href="/products" [ngClass]="selectedPage === '/products' ? 'active' : 'inactive'">
-                <mat-icon>info</mat-icon>
                 <span>Products</span>
             </a>
             <ng-template *ngIf="isLoggedIn; then thenBlock2 else elseBlock2"></ng-template>
             <ng-template #elseBlock2>
                 <a mat-list-item href="/login" [ngClass]="selectedPage === '/login' ? 'active' : 'inactive'">
-                    <mat-icon>info</mat-icon>
                     <span>Login</span>
                 </a>
                 <a mat-list-item href="/signup" [ngClass]="selectedPage === '/signup' ? 'active' : 'inactive'">
-                    <mat-icon>info</mat-icon>
                     <span>SignUp</span>
                 </a>
             </ng-template>
+            <a mat-list-item href="/profile" [ngClass]="selectedPage === '/profile' ? 'active' : 'inactive'">
+                <span>Profile</span>
+            </a>
+            <a mat-list-item href="/cart" [ngClass]="selectedPage === '/cart' ? 'active' : 'inactive'">
+                <span>Cart</span>
+            </a>
             <ng-template #thenBlock2>
-                <button mat-button (click)="logout()">Logout</button>
+                <a mat-list-item (click)="logout()">
+                    <span>Logout</span>
+                </a>
             </ng-template>
         </mat-nav-list>
     </mat-sidenav>
@@ -41,14 +40,13 @@
                 </button>
             </div>
             <div class="navbar" fxFlex fxLayout fxLayoutAlign="center" fxHide.lt-sm fxHide.sm>
-                <a href="/home" [ngClass]="selectedPage === '/home' ? 'active' : 'inactive'">Home</a>
-                <a href="/about" [ngClass]="selectedPage === '/about' ? 'active' : 'inactive'">About</a>
-                <a href="/services" [ngClass]="selectedPage === '/services' ? 'active' : 'inactive'">Services</a>
-                <a href="/products" [ngClass]="selectedPage === '/products' ? 'active' : 'inactive'">Products</a>
+                <a class="navbarLink" href="/home" [ngClass]="selectedPage === '/home' ? 'active' : 'inactive'">Home</a>
+                <a class="navbarLink" href="/about" [ngClass]="selectedPage === '/about' ? 'active' : 'inactive'">About</a>
+                <a class="navbarLink" href="/products" [ngClass]="selectedPage === '/products' ? 'active' : 'inactive'">Products</a>
                 <ng-template *ngIf="isLoggedIn; then thenBlock else elseBlock"></ng-template>
                 <ng-template #elseBlock class="dropdown" (mouseenter)="menuTrigger.openMenu()">
-                    <button mat-button #menuTrigger="matMenuTrigger"
-                        [matMenuTriggerFor]="dropdownMenu"><mat-icon class="button-icon">account_circle</mat-icon>asd</button>
+                    <button mat-button #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="dropdownMenu"><mat-icon
+                            class="button-icon">account_circle</mat-icon>Profile</button>
                     <mat-menu #dropdownMenu>
                         <a mat-menu-item href="/login"
                             [ngClass]="selectedPage === '/login' ? 'active' : 'inactive'">Login</a>
@@ -57,11 +55,12 @@
                     </mat-menu>
                 </ng-template>
                 <ng-template #thenBlock>
-                    <button mat-button (click)="logout()">Logout</button>
+                    <a href="/cart" class="navbarLink" [ngClass]="selectedPage === '/cart' ? 'active' : 'inactive'">Cart</a>
+                    <a href="/profile" class="navbarLink" [ngClass]="selectedPage === '/profile' ? 'active' : 'inactive'">Profile</a>
+                    <a href="#" class="navbarLink" (click)="logout()">Logout</a>
                 </ng-template>
-                <button mat-button><mat-icon>account_circle</mat-icon></button>
             </div>
         </mat-toolbar>
-        <router-outlet></router-outlet>
+        <router-outlet ></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>

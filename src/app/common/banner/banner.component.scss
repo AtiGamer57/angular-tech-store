@@ -1,0 +1,10 @@
+div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: rgb(0, 162, 232);
+
+    img {
+        max-width: 100vh;
+    }
+}

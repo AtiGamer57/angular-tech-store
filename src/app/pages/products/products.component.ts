@@ -18,13 +18,13 @@ export class ProductsComponent implements OnInit {
     this.productService.listAllProducts().subscribe((data: Array<Product>) => {
       this.products = data;
     });
-    this.cartService.getCart();
   }
 
 
-  addItemToCard(id: string) {
-    if (localStorage.getItem('user')){
-      this.cartService.addItemToCart(id);
+  addItemToCart(productId: string) {
+    const user = JSON.parse(localStorage.getItem('user') as string);
+    if (user){
+      this.cartService.addItemToCart(productId, user.uid);
     } else {
       this.router.navigateByUrl('/login')
     }

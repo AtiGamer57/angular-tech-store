@@ -17,7 +17,7 @@ export class LoginComponent {
     password: new FormControl('', [Validators.required]),
   });
 
-  constructor (private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
 
   }
 
@@ -25,7 +25,9 @@ export class LoginComponent {
     if (this.loginForm.value.email && this.loginForm.value.password) {
       this.authService.login(this.loginForm.value.email, this.loginForm.value.password).then(cred => {
         this.authService.setCurrentUser();
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/home').then(_ => {
+          window.location.reload();
+        });
       }).catch(error => {
         console.error(error);
       });
