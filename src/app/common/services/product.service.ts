@@ -8,7 +8,7 @@ import { Product } from '../../models/product';
 export class ProductService {
   collectionName = 'Products';
   private productCollection: AngularFirestoreCollection<Product>;
-  
+
 
   constructor(private afs: AngularFirestore) {
     this.productCollection = afs.collection<Product>(this.collectionName);
@@ -37,4 +37,58 @@ export class ProductService {
 
     return querySnapshot.docs.at(0)?.data();
   }
+
+
+  async GetHomePhones() {
+    const querySnapshot = await this.productCollection.ref
+      .where('category', '==', 'phone')
+      .orderBy('price', 'desc')
+      .limit(5)
+      .get();
+
+
+    let array: Array<Product> = [];
+
+    if (querySnapshot.empty) {
+      return;
+    }
+
+    querySnapshot.forEach(doc => {
+      array.push(doc.data());
+    })
+
+    return array;
+  }
+
+  async GetHomeLaptops() {
+    const querySnapshot = await this.productCollection.ref
+      .where('category', '==', 'laptop')
+      .orderBy('price', 'desc')
+      .limit(5)
+      .get();
+
+
+    let array: Array<Product> = [];
+
+    if (querySnapshot.empty) {
+      return;
+    }
+
+    querySnapshot.forEach(doc => {
+      array.push(doc.data());
+    })
+
+    return array;
+  }
+
+  async GetHomeBest() {
+    const querySnapshot = await this.productCollection.ref
+      .orderBy('price', 'desc')
+      .limit(5)
+      .get();
+
+    return querySnapshot.docs.at(0)?.data();
+  }
+
+
 }

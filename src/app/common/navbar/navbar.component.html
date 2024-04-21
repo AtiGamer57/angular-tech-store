@@ -19,15 +19,15 @@
                     <span>SignUp</span>
                 </a>
             </ng-template>
-            <a mat-list-item href="/profile" [ngClass]="selectedPage === '/profile' ? 'active' : 'inactive'">
-                <span>Profile</span>
-            </a>
-            <a mat-list-item href="/cart" [ngClass]="selectedPage === '/cart' ? 'active' : 'inactive'">
-                <span>Cart</span>
-            </a>
             <ng-template #thenBlock2>
                 <a mat-list-item (click)="logout()">
                     <span>Logout</span>
+                </a>
+                <a mat-list-item href="/profile" [ngClass]="selectedPage === '/profile' ? 'active' : 'inactive'">
+                    <span>Profile</span>
+                </a>
+                <a mat-list-item href="/cart" [ngClass]="selectedPage === '/cart' ? 'active' : 'inactive'">
+                    <span>Cart</span>
                 </a>
             </ng-template>
         </mat-nav-list>
@@ -62,5 +62,6 @@
             </div>
         </mat-toolbar>
         <router-outlet ></router-outlet>
+        <app-footer/>
     </mat-sidenav-content>
 </mat-sidenav-container>

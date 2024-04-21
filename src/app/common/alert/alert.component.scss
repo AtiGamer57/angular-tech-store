@@ -1,0 +1,13 @@
+div {
+    text-align: center;
+    min-width: fit-content;
+    min-height: fit-content;
+    align-items: center;
+    justify-content: center;
+
+    & > * {
+        text-align: center;
+        margin: auto;
+        padding: 1rem;
+    }
+}

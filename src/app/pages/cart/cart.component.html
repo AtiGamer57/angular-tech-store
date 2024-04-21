@@ -1,20 +1,37 @@
 <div class="card-container">
-    <mat-card *ngFor="let item of itemsInCart; let i = index" [ngStyle]="{'background-color': i % 2 === 1 ? '#c6ebff' : '#abe2ff'}">
-        <mat-card-header>
-            <mat-card-title>{{ item.product?.name }}</mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="container">
-            <div class="imgContainer">
-                <img src={{item.product?.imgUrl}}>
-            </div>
-            <div>
-                <p>{{ item.product?.description }}</p>
-                <p>items in cart: {{ item.count }}</p>
-                <p>{{ (item.count * (item.product?.price || 1)) | price }} ({{item.product?.price | price}}/pcs)</p>
-            </div>
-        </mat-card-content>
-    </mat-card>
-    <div class="buttonContainer">
-        <button mat-raised-button (click)="buyEverything()">Buy<mat-icon>shopping_cart</mat-icon></button>
-    </div>
+    <ng-container *ngIf="itemsInCart.length > 0; then cartNotEmpty else cartEmpty"></ng-container>
+    <ng-template #cartNotEmpty>
+        <mat-card *ngFor="let item of itemsInCart; let i = index"
+            [ngStyle]="{'background-color': i % 2 === 1 ? '#c6ebff' : '#abe2ff'}">
+            <mat-card-header>
+                <mat-card-title>{{ item.product?.name }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="container">
+                <div class="imgContainer">
+                    <img src={{item.product?.imgUrl}}>
+                </div>
+                <div>
+                    <p>{{ item.product?.description }}</p>
+                    <p>items in cart: {{ item.count }}</p>
+                    <p>{{ (item.count * (item.product?.price || 1)) | price }} ({{item.product?.price | price}}/pcs)</p>
+
+                    <button mat-raised-button class="plus" (click)="increaseItem(item.product?.id || 'error')">+<mat-icon>add_shopping_cart</mat-icon></button>
+                    <button mat-raised-button class="minus" (click)="decreaseItem(item.product?.id || 'error')">-<mat-icon>remove_shopping_cart</mat-icon></button>
+                    <button mat-raised-button class="minus" (click)="removeItem(item.product?.id || 'error')">remove<mat-icon>shopping_cart_off</mat-icon></button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <div class="buttonContainer">
+            <button mat-raised-button (click)="buyEverything()">Buy<mat-icon>shopping_cart</mat-icon></button>
+            <button mat-raised-button (click)="emptyCart()">Empty Cart<mat-icon>shopping_cart_off</mat-icon></button>
+        </div>
+    </ng-template>
+    <ng-template #cartEmpty>
+        <mat-card class="cart-card">
+            <mat-card-header class="cart-header">Your cart is empty!</mat-card-header>
+            <mat-card-content class="cart-content">
+                You can put products in your cart by clicking "Add item to cart" in the products tab!
+            </mat-card-content>
+        </mat-card>
+    </ng-template>
 </div>

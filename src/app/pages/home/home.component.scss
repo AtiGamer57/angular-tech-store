@@ -1,0 +1,60 @@
+.page-container {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    .card-container {
+        margin: auto;
+        width: 90%;
+
+        .row {
+            display: flex;
+            .card {
+                max-width: 20%;
+                margin: 1rem;
+            }
+        }
+    }
+
+    .big-card {
+        margin: auto;
+        width: 90%;
+    
+        .card {
+            max-width: 100%;
+            margin: 1rem;
+        }
+    }
+}
+
+.img-container {
+
+
+    img {
+        max-width: 90%;
+    }
+}
+
+
+
+.big-img {
+
+    img {
+        max-width: 60%;
+    }
+}
+
+.header {
+    text-align: left;
+    font-size: xx-large;
+    margin-top: 5rem;
+    margin-left: 2rem;
+}
+
+.big-title {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}

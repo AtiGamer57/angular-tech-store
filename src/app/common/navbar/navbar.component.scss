@@ -50,15 +50,11 @@
 }
 
 #content {
-  height: 100vh;
+  height: fit-content;
 }
 
 button {
   text-align: center;
   align-items: center;
   justify-content: center;
-
-  mat-icon {
-  
-  }
 }

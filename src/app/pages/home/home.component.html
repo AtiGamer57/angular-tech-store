@@ -1,1 +1,63 @@
-<p>home works!</p>
+<div class="page-container">
+    <div class="big-card">
+        <h2 class="header">REALLY FIRE 🔥🔥🔥</h2>
+        <mat-card class="card">
+            <mat-card-header class="big-title">
+                <mat-card-title>{{ firstAd?.name }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="container">
+                <div>
+                    <div class="big-img">
+                        <img src={{firstAd?.imgUrl}}>
+                    </div>
+                    <p>{{ firstAd?.description }}</p>
+                </div>
+                <div>
+                    <p>{{ firstAd?.price | price }}</p>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="card-container">
+        <h2 class="header">Our very best laptops!</h2>
+        <div class="row">
+            <mat-card class="card" *ngFor="let product of secondAd">
+                <mat-card-header>
+                    <mat-card-title>{{ product.name }}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="container">
+                    <div>
+                        <div class="img-container">
+                            <img src={{product.imgUrl}}>
+                        </div>
+                        <p>{{ product.description }}</p>
+                    </div>
+                    <div>
+                        <p>{{ product.price | price }}</p>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+    <div class="card-container">
+        <h2 class="header">Our very best smart bricks!</h2>
+        <div class="row">
+            <mat-card class="card" *ngFor="let product of thirdAd">
+                <mat-card-header>
+                    <mat-card-title>{{ product.name }}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content class="container">
+                    <div>
+                        <div class="img-container">
+                            <img src={{product.imgUrl}}>
+                        </div>
+                        <p>{{ product.description }}</p>
+                    </div>
+                    <div>
+                        <p>{{ product.price | price }}</p>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

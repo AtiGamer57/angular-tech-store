@@ -22,7 +22,7 @@ export class CartService {
   addItemToCart(productId: string, uid: string) {
     let cart: Cart;
     this.getCartById(uid).then(data => {
-      if (data){
+      if (data) {
         cart = data;
         console.log("cart fount, content: " + cart)
       }
@@ -42,7 +42,32 @@ export class CartService {
         }
         cart.items.push(item);
       }
-      this.updateCart(cart, uid);
+      return this.afs.collection(this.collectionName).doc(uid).update(cart);
+    })
+  }
+
+  decreaseItemInCart(productId: string, uid: string) {
+    let cart: Cart;
+    this.getCartById(uid).then(data => {
+      if (data) {
+        cart = data;
+        console.log("cart fount, content: " + cart)
+      }
+
+    });
+    this.isItemInCart(productId).then(bool => {
+      if (bool) {
+        for (let i = 0; i < cart.items.length; i++) {
+          if (cart.items[i].itemid == productId) {
+            cart.items[i].count--;
+            if (cart.items[i].count == 0) {
+              return this.removeItemFromCart(cart.items[i].itemid, uid);
+            } else {
+              return this.afs.collection(this.collectionName).doc(uid).update(cart);
+            }
+          }
+        }
+      }
     })
   }
 
@@ -60,8 +85,10 @@ export class CartService {
         }
       }
       if (cutIndex) {
-        cart.items = cart.items.splice(cutIndex, 1);
-        this.updateCart(cart, user.uid);
+        cart.items.splice(cutIndex, 1);
+        return this.afs.collection(this.collectionName).doc(uid).update(cart);
+      } else {
+        return;
       }
     });
   }
@@ -82,14 +109,10 @@ export class CartService {
     return this.createCart(cart);
   }
 
-  emptyCart() {
-    const user = localStorage.getItem('user');
-    if (user) {
-      const uid = JSON.parse(user).uid as string;
-      this.deleteCart(uid).then(_ => {
-        return this.createEmptyCart(uid);
-      });
-    }
+  emptyCart(uid: string) {
+    return this.deleteCart(uid).then(_ => {
+      return this.createEmptyCart(uid);
+    });
   }
 
   async isItemInCart(productId: string) {
