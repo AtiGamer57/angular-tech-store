@@ -1,5 +1,6 @@
 <div class="container">
     <h2>Registration</h2>
+    <div *ngIf="errorMessage">{{this.errorMessage}}</div>
     <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
         <mat-form-field>
             <mat-label for="username">Username:</mat-label>

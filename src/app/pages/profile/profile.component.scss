@@ -1,0 +1,28 @@
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    height: fit-content;
+  }
+  
+  .profile-card {
+    width: 400px;
+    padding: 20px;
+  }
+  
+  .profile-card mat-card-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .profile-card mat-card-content {
+    margin-top: 10px;
+  }
+  
+  .profile-card mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  

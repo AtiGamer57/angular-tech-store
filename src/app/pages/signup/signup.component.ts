@@ -14,11 +14,12 @@ import { CartService } from '../../common/services/cart.service';
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
-export class SignupComponent implements OnInit{
-  
+export class SignupComponent implements OnInit {
+  errorMessage: string = '';
+
   signUpForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]),
     passwordRepeat: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]),
     name: new FormGroup({
@@ -27,15 +28,16 @@ export class SignupComponent implements OnInit{
     }),
   });
 
-  constructor(private location: Location, private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private userService: UserService, private cartService: CartService) {}
+  constructor(private location: Location, private formBuilder: FormBuilder, private authService: AuthService, private router: Router, private userService: UserService, private cartService: CartService) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit(){
+  onSubmit() {
     if (this.signUpForm.valid) {
-      if (this.signUpForm.value.email && this.signUpForm.value.password){
+      if (this.signUpForm.value.email && this.signUpForm.value.password) {
         this.authService.signUp(this.signUpForm.value.email, this.signUpForm.value.password).then(cred => {
+          console.log("helyes cuccok")
           this.authService.setCurrentUser();
           const user: User = {
             id: cred.user?.uid as string,
@@ -48,7 +50,7 @@ export class SignupComponent implements OnInit{
           };
           this.userService.createUser(user).then(_ => {
           }).catch(error => {
-            console.log(error); 
+            console.log(error);
           });
 
           const cart: Cart = {
@@ -60,10 +62,15 @@ export class SignupComponent implements OnInit{
               window.location.reload();
             });
           }).catch(error => {
-            console.log(error); 
+            console.log(error);
           });
         }).catch(error => {
-          console.error(error);
+          console.log("hibas cuccok")
+          if (error.code === 'auth/invalid-email') {
+            this.errorMessage = 'Invalid email format. Please try again.';
+          } else {
+            this.errorMessage = error.message;
+          }
         });
       }
     } else {
@@ -71,7 +78,7 @@ export class SignupComponent implements OnInit{
     }
   }
 
-  goBack(){
+  goBack() {
     this.location.back();
   }
 }

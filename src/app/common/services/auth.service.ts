@@ -1,6 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { User } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { Observable, Subscriber } from 'rxjs';
 
@@ -47,6 +48,22 @@ export class AuthService {
   getCurrentUser() {
     return this.auth.authState;
   }
+
+  async deleteAndLogoutUser() {
+    try {
+      const user = await this.auth.currentUser;
+      if (user) {
+        await user.delete();
+        await this.auth.signOut();
+      } else {
+        console.error('No user found.');
+      }
+    } catch (error) {
+      console.error('Error deleting user:', error);
+    }
+  }
+
+
 
 
 }
